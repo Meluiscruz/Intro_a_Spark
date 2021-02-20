@@ -1,66 +1,44 @@
-
-En este repositorio estàn mis notas de Cornell y mis cuadernos de Jupyter relativos al curso de Spark de Platzi
-
 # Intro_a_Spark
 
-![](https://github.com/Meluiscruz/My_HackerRank_Bookmarks/blob/master/My_icons/hackerrank.svg?raw=true)
+![](https://github.com/Meluiscruz/Intro_a_Spark/blob/master/Images/spark%20logo.png?raw=true)
 
-## Project metrics.
+## Metricas del proyecto.
 
-![](https://img.shields.io/github/stars/Meluiscruz/My_HackerRank_Bookmarks.svg) ![](https://img.shields.io/github/forks/Meluiscruz/My_HackerRank_Bookmarks.svg) ![](https://img.shields.io/github/issues/Meluiscruz/My_HackerRank_Bookmarks.svg)![](https://img.shields.io/github/tag/Meluiscruz/My_HackerRank_Bookmarks.svg)
+![](https://img.shields.io/github/stars/Meluiscruz/Intro_a_Spark.svg) ![](https://img.shields.io/github/forks/Meluiscruz/Intro_a_Spark.svg)
+![](https://img.shields.io/github/issues/Meluiscruz/Intro_a_Spark.svg)![](https://img.shields.io/github//Meluiscruz/Intro_a_Spark.svg)
 
-## Scope of the project.
+## Alcance y objetivos.
 
-In this repo, you can find some problems from [Hacker Rank](https://www.hackerrank.com "Hacker Rank"). This repo is organized by language, each problem contains the statement (in pdf) and the code (solution). I have chosen those problems because, in my opinion, them contains features that can be found in other problems in productive environments. 
+Este proyecto pertenece a una rama del repositorio del curso de [Introduccion de Spark de Platzi](https://github.com/terranigmark/curso-apache-spark-platzi "Introduccion de Spark de Platzi"), impartido por [Oscar Gutiérrez](https://github.com/Ator97 "Oscar Gutiérrez").
 
-I haven't included the venvs (for Python scripts), neither exe files (for C scripts).
+Las operaciones de Spark en este proyecto intentan expresar las capacidades del framework en el caso específico de relacionar diferentes data sets de deportistas olímpicos y sus estadisticas a lo largo de la historia de los Juegos olimpicos Modernos.
 
-## Table of contents.
+Las principales diferencias con respecto al repositorio original son las siguientes:
 
-- Bash.
-  - Comparing numbers.
-  - More of conditionals.
-  - The world of Numbers.
-  
-- C.
-  - Foor Loop in C.
-  - Functions in C.
-  - Playing with characters.
-  - Pointers in C.
-  - Printing Pattern Using Loops.
+- Hay instrucciones detalladas sobre la instalación y configuración de Spark en Linux.
+- Hay notas de Cornell sobre los modulos 1, 2 y 3 del curso.
+- Los Jupyter Notebooks de los modulos 3 y 4 estan divididos por lecciones y poseen comentarios adicionales.
 
-- Problem Solving.
-  - Counting Valleys.
-  - Jumping on the Clouds.
-  - Sales by Match.
-  - Simple Array Sum.
+## Tabla de contenido.
+
+- [/files]: Directorio que contiene los datasets del proyecto(https://github.com/Meluiscruz/Intro_a_Spark/tree/master/files "files").
+- [/Images]: Directorio de imagenes miscelanias, no relevante(https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Images "Images").
+- [/Notebooks]: Es donde habitan los Jupyter Notebooks y archivos html del proyecto (https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks "Notebooks").
+  - [Notebooks/Instrucciones_de_configuracion_y_uso]: El archivo main.html indexa las notas de Cornell relativas a los modulos 1, 2 y 3 del curso. (https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks/Instrucciones_de_configuracion_y_uso" Instrucciones de config").
  
-- Python.
-  - Arrays.
-  - Class 2: Find the torsional angle.
-  - Classes: Dealing with Complex Numbers.
-  - Handshake.
-  - Lists.
-  - Merge the Tools.
-  - Nested Lists.
-  - Time Delta.
-  - Write a Function.
-  
-- RegEx.
-  - Building a smart IDE.
-  - Find a word.
-  - Validating and Parsing E-mail address.
-  - Validating phone number.
- 
-- SQL.
-  - Binary tree nodes.
-  - Employee Salaries.
-  - Higher than 75 marks.
-  - The Bundler.
-  - Top_Earners.
-  - Type of Triangle.
-  - Weather Observation: Station 4.
-  
-## Why I have to develop this?
+- [/codeExample.py]: Es un ejemplo de script de pySpark que tiene dos propositos; comprobar la instalación del framework y demostrar lo impractico que es trabajar con scripts de pyspark en ambientes productivos. (https://github.com/Meluiscruz/Intro_a_Spark/blob/master/codeExample.py "codeExample.py")
 
-I want to keep near those problems to me in case of Tech interviews or the like. Also, I want to share them to the comunity.
+- [/data.csv]: Dataset de prueba para la verificaci{on de la instalación del framework. (https://github.com/Meluiscruz/Intro_a_Spark/blob/master/data.csv "data.csv")
+
+  
+## ¿Por qué desarrollé este proyecto?
+
+Mi intensión es tener a la mano este material para futuras consultas, ya que tengo pensado utilizar Spark como framework de consulta y administración de bigdata. En un futuro no muy lejano estaré haciendo un pull request al repositorio original para que las notas sean parte del material oficial del curso.
+
+## ¿Qué está pendiente por desarrollar?
+
+Las notas de Cornell de los modulos 4 y 5. Así como profundizar en el Jupyter Notebook del modulo 5, ya que ese archivo se mantiene sin cambios con respecto a su versión original.
+
+## Información técnica.
+
+Los cuadernos estan desarrollados en Jupyter Notebooks, se utilizó un ambiente virtual con Python=3.7, compatible para la versión de Spark 2.4.7. Cabe recorad que Spark requiere de Scala y la máquina virtual de Java para funcionar, para mayor detalle consulte el siguiente [link](https://spark.apache.org/docs/2.4.7/ "documentación")
