@@ -40,4 +40,4 @@ Las notas de Cornell de los modulos 4 y 5. Así como profundizar en el Jupyter N
 
 ## Información técnica.
 
-Los cuadernos estan desarrollados en Jupyter Notebooks, se utilizó un ambiente virtual con Python=3.7, compatible para la versión de Spark 2.4.7. Cabe recorad que Spark requiere de Scala y la máquina virtual de Java para funcionar, para mayor detalle consulte el siguiente [link](https://spark.apache.org/docs/2.4.7/ "documentación")
+Los cuadernos estan desarrollados en Jupyter Notebooks, se utilizó un ambiente virtual con Python=3.7, compatible para la versión de Spark 2.4.7. Cabe recorar, que a demás de Python, Spark requiere de Scala y la máquina virtual de Java para funcionar. Para mayor detalle consulte el siguiente [link](https://spark.apache.org/docs/2.4.7/ "documentación")
