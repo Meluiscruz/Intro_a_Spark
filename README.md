@@ -1,4 +1,4 @@
-# Intro_a_Spark
+# Introducción a Spark
 
 ![](https://github.com/Meluiscruz/Intro_a_Spark/blob/master/Images/spark%20logo.png?raw=true)
 
