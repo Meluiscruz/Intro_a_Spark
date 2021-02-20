@@ -21,15 +21,14 @@ Las principales diferencias con respecto al repositorio original son las siguien
 
 ## Tabla de contenido.
 
-- [/files]: Directorio que contiene los datasets del proyecto(https://github.com/Meluiscruz/Intro_a_Spark/tree/master/files "files").
-- [/Images]: Directorio de imagenes miscelanias, no relevante(https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Images "Images").
-- [/Notebooks]: Es donde habitan los Jupyter Notebooks y archivos html del proyecto (https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks "Notebooks").
-  - [Notebooks/Instrucciones_de_configuracion_y_uso]: El archivo main.html indexa las notas de Cornell relativas a los modulos 1, 2 y 3 del curso. (https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks/Instrucciones_de_configuracion_y_uso" Instrucciones de config").
+- [/files](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/files "files"): Directorio que contiene los datasets del proyecto.
+- [/Images](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Images "Images"): Directorio de imagenes miscelanias, no relevante.
+- [/Notebooks](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks "Notebooks"): Es donde habitan los Jupyter Notebooks y archivos html del proyecto.
+  - [Notebooks/Instrucciones_de_configuracion_y_uso](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks/Instrucciones_de_configuracion_y_uso" Instrucciones de config"): El archivo main.html indexa las notas de Cornell relativas a los modulos 1, 2 y 3 del curso. 
  
-- [/codeExample.py]: Es un ejemplo de script de pySpark que tiene dos propositos; comprobar la instalación del framework y demostrar lo impractico que es trabajar con scripts de pyspark en ambientes productivos. (https://github.com/Meluiscruz/Intro_a_Spark/blob/master/codeExample.py "codeExample.py")
+- [/codeExample.py](https://github.com/Meluiscruz/Intro_a_Spark/blob/master/codeExample.py "codeExample.py"): Es un ejemplo de script de pySpark que tiene dos propositos; comprobar la instalación del framework y demostrar lo impractico que es trabajar con scripts de pyspark en ambientes productivos. 
 
-- [/data.csv]: Dataset de prueba para la verificaci{on de la instalación del framework. (https://github.com/Meluiscruz/Intro_a_Spark/blob/master/data.csv "data.csv")
-
+- [/data.csv](https://github.com/Meluiscruz/Intro_a_Spark/blob/master/data.csv "data.csv"): Dataset de prueba para la verificaci{on de la instalación del framework. 
   
 ## ¿Por qué desarrollé este proyecto?
 
