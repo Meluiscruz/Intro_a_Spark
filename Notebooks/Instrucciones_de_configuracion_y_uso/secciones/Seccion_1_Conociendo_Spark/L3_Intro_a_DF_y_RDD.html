@@ -1,0 +1,637 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>3. Introducción a los RDDs y DataFrames.</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e3601069-14a6-440b-a946-f34b4ea99a4f" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📍</span></div><h1 class="page-title">3. Introducción a los RDDs y DataFrames.</h1></header><div class="page-body"><h2 id="6e3402b0-c8fb-4c42-8c20-8952ad5e7e29" class="">Conociendo Apache Spark.</h2><p id="66b91496-fefb-42dd-9f54-43c4053fc805" class=""><strong>Fecha: </strong>12 de enero, 2021.</p><hr id="671a6ba2-fdc4-4206-b192-582f3e121437"/><div id="417d4b05-7121-4032-ace2-3d995b4810ce" class="column-list"><div id="5564c6f9-9fbc-45c3-957e-c3e83f04fa8f" style="width:25%" class="column"><h3 id="b030f469-2a36-4209-9a19-4342974c0cb6" class="">🎗️Recordatorio.</h3><p id="320ec19d-b7e9-4df6-9a31-253c51466295" class="">
+</p><p id="2c0fff13-8e11-4b4e-b60b-dd4106a2f086" class=""><strong>RDD:</strong> Resilient Distributed Dataset.</p><p id="ad65c7ec-71d4-47f6-8297-7d6910fc8b11" class="">
+</p><p id="6bf39498-e705-45cc-b98e-ea15637fde10" class=""><strong>DataFrame: </strong>Es una estructura &quot;superior&quot; a un RDD</p></div><div id="008b5934-8b5d-4c0a-b9c2-b417a56d7de3" style="width:75%" class="column"><h3 id="d92c8e77-aae8-4aeb-9d5c-849345e39248" class="">📒Notas.</h3><p id="c7e21be9-f0c8-4ce1-986a-283852d453d3" class="">
+</p><p id="3edd2b26-aac8-4bd8-b832-5fabd9404005" class="">Las dos principales estructuras que soporta Spark con:<div class="indented"><ul id="2a288bf1-10b2-491c-9a4d-9d760079e91a" class="bulleted-list"><li>RDD</li></ul><ul id="fe8e9528-f1f8-4e1e-b0b7-2e137b745848" class="bulleted-list"><li>DataFrames</li></ul></div></p><p id="df1c2c32-9dc7-49e4-823b-8383c597dc0f" class="">Los RDD son los componentes mínimos con el cual podemos comunicarnos con Spark.</p><p id="7414edb8-6fd9-4700-bdd6-17d4a6e470ed" class="">
+</p><p id="08215229-5113-4234-9e9f-f0a480186f22" class=""><strong>Características de los RDD:</strong></p><ul id="ff7b2aad-72ff-4a40-a3ff-438cf9672a17" class="bulleted-list"><li><strong>Principal abstracción de datos:</strong> Es la unidad básica, existen desde su inicio hasta su versión 3.0.</li></ul><ul id="63a7838f-83c5-499d-9360-bc38a4aa655c" class="bulleted-list"><li><strong>Distribución:</strong> Los RDD se dritribuyen y particionan a lo largo del clúster.</li></ul><ul id="5f5f9c61-c31b-4683-a1e6-0010818502bd" class="bulleted-list"><li><strong>Creación simple:</strong> Al no poseer estructura formalmente, adoptan las más intuitiva.</li></ul><ul id="5420a11d-e870-46f2-a0cb-a5a377374f26" class="bulleted-list"><li><strong>Inmutabilidad:</strong> Posterior a su creación no se pueden modificar</li></ul><ul id="9a3f2f02-c699-44c4-b1c7-fa58891f06b4" class="bulleted-list"><li><strong>Ejecución perezosa:</strong> A menos que se realice una acción.</li></ul><p id="ff1f6896-464a-4a84-8794-cea00f080d05" class="">
+</p><p id="017b1e67-fa1c-4194-bf75-5159a1827669" class=""><strong>Características de los DataFrame</strong></p><ul id="254a7c61-ad21-40b5-afc1-cefa075992b9" class="bulleted-list"><li><strong>Formato:</strong> A diferencia de un RDD poseen columnas, lo cual les otorga tipos de datos.</li></ul><ul id="ed28bebc-d50f-4a63-a236-8354219d6be2" class="bulleted-list"><li><strong>Optimización:</strong> Poseen una mejor implementación, lo cual los hace preferibles.</li></ul><ul id="c5a53bcb-54b3-4400-b5cb-f52f826b852f" class="bulleted-list"><li><strong>Facilidad de creación:</strong> Se pueden crear desde una base de datos externa, archivo o RDD existente.</li></ul><p id="7731b93f-6b2a-4e71-a28d-0181b3fa229e" class="">
+</p><p id="c4f384a4-bfe4-48aa-b781-b448679cb423" class=""><strong>¿Cuándo usar un RDD?</strong></p><ul id="0ad585b6-3439-4c12-a9c8-2659a97408ca" class="bulleted-list"><li>Cuando te interesa controlar el flujo de Spark.</li></ul><ul id="d817f487-a398-46e1-9a17-45bdf724d57b" class="bulleted-list"><li>Si eres usuario Python, convertir a RDD un conjunto permite mejor control de datos.</li></ul><ul id="10055d0f-2a01-464f-8694-8d3eaf8731ad" class="bulleted-list"><li>Estás conectándote a versiones antiguas de spark.</li></ul><p id="f2cac942-b983-4270-950d-da2a192fdd5b" class="">
+</p><p id="97460c33-ca33-42f9-8739-47c974ef8f2c" class=""><strong>¿Cuándo usar DataFrames?</strong></p><ul id="abf744a2-9110-41da-8ea0-d84f5778a3ef" class="bulleted-list"><li>Si poseemos semánticas de datos complicadas.</li></ul><ul id="1f0f8d80-20fa-49a8-932f-a7ef176af342" class="bulleted-list"><li>Vamos a realizar tareas de alto nivel como filtros, mapeos, agregaciones, promedios o sumas.</li></ul><ul id="40a373a7-2f36-4005-8cd8-97eef5575cdb" class="bulleted-list"><li>Si vamos a usar sentencias SQL.</li></ul><p id="e1b85085-9a67-4df1-97c2-974756b951c7" class="">
+</p></div></div><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="7480dd19-0e4f-4350-a75e-0b911b94a417"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><strong>Resumen: </strong>La tendencia del avance de Spark es la depreciación de los RDDs, ya que los DataFrames son estructuras más flexibles y completas. Los RDDs siguen siendo una estructura con gran prescencia en las primeras versiones de Spark.</div></figure><p id="e378b956-735b-470d-8261-3f45904dcb9d" class="">
+</p><h3 id="460d18a7-363e-4fd3-af33-e591487d9921" class="">Recursos y fuentes.</h3><p id="6f6c3235-4bef-4c1a-86e4-44540b1a9396" class="">
+</p><figure id="95c7e490-5c4d-488e-9571-c99561057c7c" class="image"><a href="L3_Intro_a_DF_y_RDD/Screenshot_from_2021-01-12_18-14-14.png"><img style="width:464px" src="3%20Introduccio%CC%81n%20a%20los%20RDDs%20y%20DataFrames%20e360106914a6440ba946f34b4ea99a4f/Screenshot_from_2021-01-12_18-14-14.png"/></a></figure></div></article></body></html>

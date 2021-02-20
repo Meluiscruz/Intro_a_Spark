@@ -1,0 +1,639 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>4. Instalación del ambiente de trabajo.</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="017217a2-8750-4b60-920b-b03ed16fd363" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📍</span></div><h1 class="page-title">4. Instalación del ambiente de trabajo.</h1></header><div class="page-body"><h2 id="045b2122-5b7a-404f-a0ce-b9100be7e678" class="">Configuración.</h2><p id="1ef9c45a-03b4-4f30-a494-2f1fbe064209" class=""><strong>Fecha: </strong>12 de enero, 2021.</p><hr id="8ff1855d-98a5-40c0-896d-8164ea4410cd"/><div id="cd6666d7-6364-4b59-b33c-cdefae0a551e" class="column-list"><div id="e02236f6-e078-4586-aeb2-ce0fa417d9ac" style="width:25%" class="column"><h3 id="3070a7b1-14f1-4397-9099-8c255f0ad594" class="">🎗️Recordatorio.</h3><p id="16929d6a-b830-4952-886a-21934dd4391f" class="">
+</p><p id="cfcc958a-ec40-42d5-899e-e87d58d38d29" class="">la bandera <code>-y</code> indica una respuesta afirmativa para cada pregunta que aparezca durante la instalación.</p><p id="432d6c73-0588-4f2b-938b-1c4857588e5c" class="">
+</p><p id="f2314ab9-92d5-4d4f-adff-b908b857bdbb" class="">Para descomprimir un paquete, usar el comando <code>tar</code></p><p id="22457c95-1a81-435d-b1f4-0fdb54e25bbd" class="">
+</p><p id="45b2531e-66d1-4a14-9e33-79be1c53f5fe" class="">La bandera <code>-b</code> permite ignorar y confirmar los terminos y condiciones del software que estamos instalando.</p><p id="3f7ef4b1-fee7-4186-8f83-1b494d65d23d" class="">
+</p></div><div id="e4e6b064-4fe4-4bf0-b0e5-7f65bca56a3c" style="width:75%" class="column"><h3 id="3cce06dd-9d3f-4c4a-86e5-6d785c5070b6" class="">📒Notas.</h3><p id="77a2f839-e7e4-4dc4-a10a-2816d28059c8" class="">
+</p><p id="0ac24fb4-c353-4263-a71b-b9661bd66fb6" class="">Pasos para instalar <strong>Spark</strong> (en una máquina con Ubuntu como OS):</p><ol id="d4e2edb3-b2ff-4751-a0a7-457732353745" class="numbered-list" start="1"><li>Antes de instalar Spark, debemos instalar:<ul id="24462055-f59f-4ae4-87b3-cd31483cee25" class="toggle"><li><details open=""><summary>Java 8</summary><ol id="f2aa46d6-057e-439a-b567-a5ac930253fa" class="numbered-list" start="1"><li>Agregar el repositorio: </li></ol><p id="f9e614fb-da3b-4ec8-ad77-9cd23ed02b67" class=""><code>sudo add-apt-repository ppa:openjdk-r/ppa</code></p><p id="9ac60e86-100f-4308-a7e1-17151b5beb07" class="">2. Refrescar los archivos de los repos de linux</p><p id="8ae59bee-3da9-4d34-ac74-552ea75a52b8" class=""><code>sudo apt-get -y update</code></p><p id="45012b9d-37bc-45ca-ab93-2ba6acd81118" class=""><code>sudo apt-get -y upgrade</code></p><p id="5b4fa7c8-385c-494c-a053-0a06890a21cd" class="">3. Instalar Java8 desde el nuevo repositorio:</p><p id="85e8c2d8-fc2f-4f65-b226-e94a5a37a41f" class=""><code>sudo apt-get -y install openjdk-8-jre</code></p></details></li></ul><ul id="4a9c089f-ae4a-4f5c-b926-29f3b28f2ce5" class="toggle"><li><details open=""><summary>Python 3</summary><p id="34c49e0a-2017-4e46-85e3-6b958d803075" class=""><code>sudo apt-get -y install python3</code></p><p id="e1d0e533-df31-43ad-b640-af59958510e1" class="">
+</p></details></li></ul><ul id="05442c3e-1f7c-486a-a248-eefc7a92e304" class="toggle"><li><details open=""><summary>Scala</summary><p id="af6e7573-3a0a-40ca-aac0-639e95b64f32" class=""><code>sudo apt-get -y install scala</code></p></details></li></ul><ul id="32d21796-da02-40e7-a1c1-bcf8506f10ef" class="toggle"><li><details open=""><summary>Pip3</summary><p id="e2671c88-ff46-4462-b8b5-462b21452f77" class=""><code>sudo apt-get -y install python3-pip</code></p></details></li></ul></li></ol><ol id="436fb3d3-699b-4777-9b8f-849e7c7fc713" class="numbered-list" start="2"><li>Una vez instalado pip3, instalar el interprete de Python con la VM de Java: <code>sudo pip3 install py4j</code></li></ol><ol id="4bcd8998-f2ff-44ba-9c62-c824abdf7e26" class="numbered-list" start="3"><li>Ir a la página de Apache Spark, descargar la versión 2.4.6, con el paquete Pre-built for Apache Hadoop 2.7</li></ol><ol id="09f004c5-dc6f-4921-b727-52e6f932ccd6" class="numbered-list" start="4"><li>Una vez descargado el paquete, ir al directorio de descargas e instalar con el siguiente comando: <code>tar -xvf spark-2.4.6-bin-hadoop2.7.tgz</code></li></ol><ol id="3901c6a8-1553-462b-878c-881abe4ef0bb" class="numbered-list" start="5"><li>Renombrar la carpeta con el siguiente comando: <code>mv spark-2.4.6-bin-hadoop2.7 spark</code></li></ol><ol id="2d9c0de2-2ce6-45af-bf61-8b768c2ebc1f" class="numbered-list" start="6"><li>Mover a la carpeta home: <code>mv spark ~/</code></li></ol><ol id="72c7b772-cff0-4436-bf22-1cd15b49ebf1" class="numbered-list" start="7"><li>Finalmente elimina la carpeta original en el directorio de descargas. <code>rm spark-2.4.6-bin-hadoop2.7.tgz</code></li></ol><p id="a94f442d-51f6-484e-bf78-236f42993245" class="">
+</p><p id="9ddda580-c341-4f4d-8da5-9f6c285bb1e7" class="">Pasos para instalar <strong>Anaconda</strong> (en una máquina con Ubuntu como OS):</p><ol id="5f6ed9cd-8464-4a14-89a6-1b9cfca560fd" class="numbered-list" start="1"><li>Descargar desde el siguiente repositorio de Anaconda: <code>wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh</code></li></ol><ol id="c5d574f6-8249-4764-a475-863927a4a245" class="numbered-list" start="2"><li>Instala Anaconda con <code>sh Anaconda3-2020.02-Linux-x86_64.sh -b</code></li></ol><ol id="ba5bf732-78b9-41b3-b644-db16d2021231" class="numbered-list" start="3"><li>Exporta la variable: <code>export PATH=/home/&lt;usuario&gt;/anaconda3/bin:$PATH</code></li></ol><ol id="2b0bd063-3359-45d9-b39f-ee72c7353f5a" class="numbered-list" start="4"><li><code>conda install py4j</code></li></ol><p id="3deef0a4-d737-49fb-b49c-206307c5b31b" class="">
+</p></div></div><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="26b996d4-d117-4f37-bde9-4b48393f53c7"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><strong>Resumen: </strong>Spark corre mejor en sistemas operativos Linux. Primero se deben instalar Java, Scala y Python, despues de descarga e instala el framework de Spark desde Apache, por último se instala Anaconda.</div></figure><p id="72a33783-aeff-4909-b9b6-c91dc8b3f9ed" class="">
+</p><h3 id="fa81964d-adff-4db3-8471-f3a9cf554952" class="">Recursos y fuentes.</h3><p id="f09e82c0-4b3b-4d35-94b0-d5203d6db114" class="">
+</p><figure id="3906f480-7edf-4833-8193-245461031e07"><a href="https://spark.apache.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Apache Spark™ - Unified Analytics Engine for Big Data</div><div class="bookmark-description">Lightning-fast unified analytics engine Apache Spark™ is a unified analytics engine for large-scale data processing. Run workloads 100x faster. Apache Spark achieves high performance for both batch and streaming data, using a state-of-the-art DAG scheduler, a query optimizer, and a physical execution engine. Write applications quickly in Java, Scala, Python, R, and SQL.</div></div><div class="bookmark-href"><img src="https://spark.apache.org/favicon.ico" class="icon bookmark-icon"/>https://spark.apache.org/</div></div><img src="https://spark.apache.org/images/spark-stack.png" class="bookmark-image"/></a></figure><figure id="b3622618-5064-4372-bef8-77b3bfef6af0"><a href="https://www.anaconda.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Anaconda | The World&#x27;s Most Popular Data Science Platform</div><div class="bookmark-description">The modern world of data science is incredibly dynamic. Every day, new challenges surface - and so do incredible innovations. To win in this context, organizations need to give their teams the most versatile, powerful data science and machine learning technology so they can innovate fast - without sacrificing security and governance.</div></div><div class="bookmark-href"><img src="https://www.anaconda.com/assets/build/favicons/favicon-c717e30d1c.ico" class="icon bookmark-icon"/>https://www.anaconda.com/</div></div><img src="https://assets-cdn.anaconda.com/assets/_1200x630_crop_center-center_82_none/anaconda-meta.jpg?mtime=20200506175707&amp;focal=none&amp;tmtime=20200616170545" class="bookmark-image"/></a></figure><figure id="9038a94b-c3a1-41c2-a403-6326ae0417b9"><a href="https://repo.anaconda.com/archive/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Index of /</div></div><div class="bookmark-href"><img src="https://repo.anaconda.com/favicon.ico" class="icon bookmark-icon"/>https://repo.anaconda.com/archive/</div></div></a></figure><figure id="6ccc0639-9015-4295-9131-ad316f1b2c02"><a href="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh</div></div></a></figure><p id="a4a180ab-b531-4256-9211-c15074fb0acc" class="">
+</p><p id="d54bbd35-763c-48b5-bf6f-513c75849031" class="">
+</p></div></article></body></html>
