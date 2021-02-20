@@ -5,7 +5,7 @@
 ## Metricas del proyecto.
 
 ![](https://img.shields.io/github/stars/Meluiscruz/Intro_a_Spark.svg) ![](https://img.shields.io/github/forks/Meluiscruz/Intro_a_Spark.svg)
-![](https://img.shields.io/github/issues/Meluiscruz/Intro_a_Spark.svg)![](https://img.shields.io/github//Meluiscruz/Intro_a_Spark.svg)
+![](https://img.shields.io/github/issues/Meluiscruz/Intro_a_Spark.svg)![](https://img.shields.io/github/tag/Meluiscruz/Intro_a_Spark.svg)
 
 ## Alcance y objetivos.
 
@@ -24,7 +24,7 @@ Las principales diferencias con respecto al repositorio original son las siguien
 - [/files](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/files "files"): Directorio que contiene los datasets del proyecto.
 - [/Images](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Images "Images"): Directorio de imagenes miscelanias, no relevante.
 - [/Notebooks](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks "Notebooks"): Es donde habitan los Jupyter Notebooks y archivos html del proyecto.
-  - [Notebooks/Instrucciones_de_configuracion_y_uso](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks/Instrucciones_de_configuracion_y_uso" Instrucciones de config"): El archivo main.html indexa las notas de Cornell relativas a los modulos 1, 2 y 3 del curso. 
+  - [/Notebooks/Instrucciones_de_configuracion_y_uso](https://github.com/Meluiscruz/Intro_a_Spark/tree/master/Notebooks/Instrucciones_de_configuracion_y_uso "Instrucciones de config"): El archivo main.html indexa las notas de Cornell relativas a los modulos 1, 2 y 3 del curso. 
  
 - [/codeExample.py](https://github.com/Meluiscruz/Intro_a_Spark/blob/master/codeExample.py "codeExample.py"): Es un ejemplo de script de pySpark que tiene dos propositos; comprobar la instalación del framework y demostrar lo impractico que es trabajar con scripts de pyspark en ambientes productivos. 
 
